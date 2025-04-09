@@ -51,9 +51,9 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          path: 'content_repos/docs-cloudfoundry-concepts',
-          routeBasePath: 'docs-cloudfoundry-concepts',
-          sidebarPath: './sidebars-docs-cloudfoundry-concepts.ts',
+          path: 'content_repos',
+          routeBasePath: '/',
+          sidebarPath: './sidebars.js',
           showLastUpdateTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -82,24 +82,41 @@ const config = {
     ],
   ],
 
-  plugins: [
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'docs-dev-guide',
-        path: 'content_repos/docs-dev-guide',
-        routeBasePath: 'docs-dev-guide',
-        sidebarPath: './sidebars-docs-dev-guide.ts',
-        showLastUpdateTime: true,
-      },
-    ],
-  ],
+  // plugins: [
+  //   [
+  //     '@docusaurus/plugin-content-docs',
+  //     /** @type {import('@docusaurus/plugin-content-docs').Options} */
+  //     ({
+  //       id: 'docs-dev-guide',
+  //       path: 'content_repos/docs-dev-guide',
+  //       routeBasePath: 'docs-dev-guide',
+  //       sidebarPath: './sidebars-docs-dev-guide.js',
+  //       showLastUpdateTime: true,
+  //     }),
+  //   ],
+  //   [
+  //     '@docusaurus/plugin-content-docs',
+  //     /** @type {import('@docusaurus/plugin-content-docs').Options} */
+  //     ({
+  //       id: 'docs-buildpacks',
+  //       path: 'content_repos/docs-buildpacks',
+  //       routeBasePath: 'docs-buildpacks',
+  //       sidebarPath: './sidebars-docs-buildpacks.js',
+  //       showLastUpdateTime: true,
+  //     }),
+  //   ],
+  // ],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
+      docs: {
+        sidebar: {
+          autoCollapseCategories: true,
+        },
+      },
       navbar: {
         title: 'Cloud Foundry Documentation',
         logo: {
@@ -107,8 +124,13 @@ const config = {
           src: 'img/logo.png',
         },
         items: [
-          {to: '/docs-cloudfoundry-concepts/cloudfoundry-concepts', label: 'Cloud Foundry Concepts', position: 'left'},
-          {to: '/docs-dev-guide', label: 'Dev Guide', position: 'left'},
+          {to: '/docs-cloudfoundry-concepts/', label: 'General Information', position: 'left'},
+          {
+            type: 'docSidebar',
+            position: 'left',
+            sidebarId: 'devGuideSidebar',
+            label: 'App Developer Guide',
+          },
           {
             href: 'https://github.com/cloudfoundry',
             label: 'GitHub',
