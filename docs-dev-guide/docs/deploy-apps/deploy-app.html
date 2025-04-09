@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-docs-dev-guide/docs/deploy-apps/deploy-app" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">Pushing your app with Cloud Foundry CLI (cf push) | Cloud Foundry Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://svkrieger.github.io/cf-docs-new/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://svkrieger.github.io/cf-docs-new/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://svkrieger.github.io/cf-docs-new/docs-dev-guide/docs/deploy-apps/deploy-app"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Pushing your app with Cloud Foundry CLI (cf push) | Cloud Foundry Documentation"><meta data-rh="true" name="description" content="The cf CLI command cf push pushes apps to . There are two main ways to run the cf push command:"><meta data-rh="true" property="og:description" content="The cf CLI command cf push pushes apps to . There are two main ways to run the cf push command:"><link data-rh="true" rel="icon" href="/cf-docs-new/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://svkrieger.github.io/cf-docs-new/docs-dev-guide/docs/deploy-apps/deploy-app"><link data-rh="true" rel="alternate" href="https://svkrieger.github.io/cf-docs-new/docs-dev-guide/docs/deploy-apps/deploy-app" hreflang="en"><link data-rh="true" rel="alternate" href="https://svkrieger.github.io/cf-docs-new/docs-dev-guide/docs/deploy-apps/deploy-app" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/cf-docs-new/blog/rss.xml" title="Cloud Foundry Documentation RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/cf-docs-new/blog/atom.xml" title="Cloud Foundry Documentation Atom Feed"><link rel="stylesheet" href="/cf-docs-new/assets/css/styles.b9e5c93a.css">
+<script src="/cf-docs-new/assets/js/runtime~main.784a0609.js" defer="defer"></script>
+<script src="/cf-docs-new/assets/js/main.6939736b.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/cf-docs-new/img/logo.png"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/cf-docs-new/"><div class="navbar__logo"><img src="/cf-docs-new/img/logo.png" alt="Cloud Foundry Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/cf-docs-new/img/logo.png" alt="Cloud Foundry Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Cloud Foundry Documentation</b></a><a class="navbar__item navbar__link" href="/cf-docs-new/docs-cloudfoundry-concepts">General Information</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/cf-docs-new/docs-dev-guide">App Developer Guide</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/cloudfoundry" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--active" href="/cf-docs-new/docs-dev-guide">App developer guide</a><button aria-label="Collapse sidebar category &#x27;App developer guide&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--active" tabindex="0" href="/cf-docs-new/docs-dev-guide/docs/deploy-apps">How to push your app with Cloud Foundry CLI (cf push)</a><button aria-label="Collapse sidebar category &#x27;How to push your app with Cloud Foundry CLI (cf push)&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/cf-docs-new/docs-dev-guide/docs/deploy-apps/deploy-app">Pushing your app with Cloud Foundry CLI (cf push)</a></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/cf-docs-new/docs-buildpacks">Cloud Foundry Buildpacks</a><button aria-label="Expand sidebar category &#x27;Cloud Foundry Buildpacks&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/cf-docs-new/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item"><a class="breadcrumbs__link" itemprop="item" href="/cf-docs-new/docs-dev-guide"><span itemprop="name">App developer guide</span></a><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item"><a class="breadcrumbs__link" itemprop="item" href="/cf-docs-new/docs-dev-guide/docs/deploy-apps"><span itemprop="name">How to push your app with Cloud Foundry CLI (cf push)</span></a><meta itemprop="position" content="2"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">Pushing your app with Cloud Foundry CLI (cf push)</span><meta itemprop="position" content="3"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Pushing your app with Cloud Foundry CLI (cf push)</h1></header><p>The cf CLI command <code>cf push</code> pushes apps to <!-- -->CF<!-- -->. There are two main ways to run the <code>cf push</code> command:</p>
+<ul>
+<li>
+<p>Run <code>cf push APP-NAME</code> to push an app using default settings. For more information, see <a href="#default-push">Push with defaults</a>.</p>
+</li>
+<li>
+<p>Run the <code>cf push</code> command with flags and helper files to customize:</p>
+<ul>
+<li>How the pushed app runs, including its route, instance count, disk size limits, memory limits, and log rate limits</li>
+<li>How push works: whether it&#x27;s configured with a manifest, runs a startup script, or limits files uploaded to the Cloud Controller</li>
+</ul>
+</li>
+</ul>
+<p>For more information about custom settings, see <a href="#custom-push">Push with custom settings</a>.</p>
+<p>For an explanation of what <!-- -->CF<!-- --> does when you run <code>cf push</code>, see <a href="/cf-docs-new/docs-dev-guide/concepts/how-applications-are-staged.html">How Apps are
+Staged</a>.</p>
+<p>For information about the life cycle of an app, see <a href="/cf-docs-new/docs-dev-guide/docs/deploy-apps/app-lifecycle.html">Application container life cycle</a>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-prerequisites"><a id="prepare"></a> Prerequisites<a href="#-prerequisites" class="hash-link" aria-label="Direct link to -prerequisites" title="Direct link to -prerequisites">​</a></h2>
+<p>Before you push your app to <!-- -->CF<!-- -->, ensure that:</p>
+<ul>
+<li>
+<p>Your app is &quot;cloud-ready.&quot; <!-- -->CF<!-- --> behaviors related to file storage, HTTP sessions, and port usage might require modifications to your app. To prepare an app to be pushed to <!-- -->CF<!-- -->, see:</p>
+<ul>
+<li><a href="/cf-docs-new/docs-dev-guide/docs/deploy-apps/prepare-to-deploy.html">Considerations for designing and running an app in the cloud</a></li>
+<li>Any <a href="/cf-docs-new/docs-dev-guide/buildpacks/index.html">Buildpacks</a> guides specific to your app language or framework, such as <a href="/cf-docs-new/docs-dev-guide/buildpacks/ruby/gsg-ror.html">Getting started deploying Ruby on Rails apps</a></li>
+</ul>
+</li>
+<li>
+<p>Your <!-- -->CF<!-- --> deployment supports the type of app you are going to push, or you have the URL of an externally-available buildpack that can stage the app.</p>
+</li>
+<li>
+<p>All required app resources are uploaded. For example, you might need to include a database driver.</p>
+</li>
+<li>
+<p>You have your target and credentials:</p>
+<ul>
+<li>The API endpoint for your <!-- -->CF<!-- --> deployment. Also known as the target URL, this is <a href="http://docs.cloudfoundry.org/running/cf-api-endpoint.html">the URL of the Cloud Controller in your Cloud Foundry instance</a>.</li>
+<li>Your user name and password for the <!-- -->CF<!-- --> deployment.</li>
+</ul>
+</li>
+<li>
+<p>You are logged into your app&#x27;s target org and space.</p>
+<ol>
+<li>Decide the org and space where you want to push your app. You might have access to one or more org and space.</li>
+<li>Log in to this target org and space with <code>cf login</code>.</li>
+</ol>
+</li>
+<li>
+<p>Your app can access every service that it uses, because an instance of the service runs in, or is shared with, the app&#x27;s space.</p>
+<ul>
+<li>For information about sharing service instances across spaces, see <a href="/cf-docs-new/docs-dev-guide/docs/services/sharing-instances.html">Sharing service instances</a>.</li>
+<li>Typical services that cloud apps use include databases, message queues, and key-value stores.</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-push-with-defaults"><a id="default-push"></a> Push with defaults<a href="#-push-with-defaults" class="hash-link" aria-label="Direct link to -push-with-defaults" title="Direct link to -push-with-defaults">​</a></h2>
+<p>To push an app with default settings:</p>
+<ol>
+<li>
+<p>Choose a name for the app. The app name must consist of alphanumeric characters and be unique to your <!-- -->CF<!-- --> deployment.</p>
+<ul>
+<li>To use an app name that is not unique, customize the app&#x27;s route as described in <a href="#custom-route">Customize the route</a>.</li>
+<li>Apps running at their default routes require unique names because default routes are based on app names, and all routes must be globally unique.</li>
+</ul>
+</li>
+<li>
+<p>Run:</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">cf push APP-NAME</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>Where <code>APP-NAME</code> is the name of the app.</p>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-default-route"><a id="default-route"></a> Default route<a href="#-default-route" class="hash-link" aria-label="Direct link to -default-route" title="Direct link to -default-route">​</a></h3>
+<p>An app&#x27;s route is the URL at which it runs. <!-- -->CF<!-- --> assembles the route for a pushed app from a host name and a domain.</p>
+<p>By default, <!-- -->CF<!-- --> sets the host name and domain as follows:</p>
+<ul>
+<li>
+<p><strong>Hostname:</strong> The name of the app name, as specified in the <code>cf push</code> command. If the app name contains underscores, <!-- -->CF<!-- --> converts them to hyphens when creating the app&#x27;s route.</p>
+</li>
+<li>
+<p><strong>Domain:</strong> The default apps domain for your <!-- -->CF<!-- --> deployment.</p>
+</li>
+</ul>
+<p>For example, an app named <code>example-app</code> running on <!-- -->CF<!-- --> with an apps domain <code>apps.example.com</code> runs at the URL
+<code>https://example-app.apps.example.com</code> by default.</p>
+<p>For more information about routes and domains, see <a href="/cf-docs-new/docs-dev-guide/docs/deploy-apps/routes-domains.html">Routes and domains</a>.</p>
+<!-- -->
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-example-session"><a id="example"></a> Example session<a href="#-example-session" class="hash-link" aria-label="Direct link to -example-session" title="Direct link to -example-session">​</a></h3>
+<p>The following example output for <code>cf push example-app</code> demonstrates how <!-- -->CF<!-- --> assigns default values to an app you push:</p>
+<pre class="terminal"><p>Creating app example-app in org example-org / space development as a.user@<!-- -->shared-domain.example.com<!-- -->...
+OK</p><p>Creating route example-app.<!-- -->shared-domain.example.com<!-- -->...
+OK</p><p>Binding example-app.<!-- -->shared-domain.example.com<!-- --> to example-app...
+OK</p><p>Uploading example-app...
+Uploading app: 560.1K, 9 files
+OK</p><p>Starting app example-app in org example-org / space development as a.user@<!-- -->shared-domain.example.com<!-- -->...
+-----&gt; Downloaded app package (552K)
+OK
+-----&gt; Using Ruby version: ruby-1.9.3
+-----&gt; Installing dependencies using Bundler version 1.3.2
+Running: bundle install --without development<!-- -->:test<!-- --> --path
+vendor/bundle --binstubs vendor/bundle/bin --deployment
+Installing rack (1.5.1)
+Installing rack-protection (1.3.2)
+Installing tilt (1.3.3)
+Installing sinatra (1.3.4)
+Using bundler (1.3.2)
+Updating files in vendor/cache
+Your bundle is complete! It was installed into ./vendor/bundle
+Cleaning up the bundler cache.
+-----&gt; Uploading droplet (23M)</p><p>1 of 1 instances running</p><p>App started</p><p>Showing health and status for app example-app in org example-org / space development as a.user@<!-- -->shared-domain.example.com<!-- -->...
+OK</p><p>requested state: started
+instances: 1/1
+usage: 1G x 1 instances
+urls: example-app.<!-- -->shared-domain.example.com</p><p>state     since                    cpu    memory        disk          logging
+#0   running   2022-09-14 05:07:18 PM   0.0%   18.5M of 1G   52.5M of 1G   3B/s of 1M/s</p></pre>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-push-with-custom-settings"><a id="custom-push"></a> Push with custom settings<a href="#-push-with-custom-settings" class="hash-link" aria-label="Direct link to -push-with-custom-settings" title="Direct link to -push-with-custom-settings">​</a></h2>
+<p>Pushing an app with custom settings typically proceeds as follows:</p>
+<ol>
+<li>
+<p><a href="#basic-settings">Customize Basic App Settings (Optional)</a></p>
+</li>
+<li>
+<p><a href="#custom-route">Customize the Route (Optional)</a></p>
+</li>
+<li>
+<p><a href="#exclude">Limit the Upload Files (Optional)</a></p>
+</li>
+<li>
+<p><a href="#profile">Configure App Initialization (Optional)</a></p>
+</li>
+<li>
+<p><a href="#custom-cf-push">Custom Push the App</a></p>
+</li>
+<li>
+<p><a href="#services">Configure App Services (Optional)</a></p>
+</li>
+</ol>
+<p>The following sections detail these steps.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-customize-basic-app-settings-optional"><a id="basic-settings"></a> Customize basic app settings (optional)<a href="#-customize-basic-app-settings-optional" class="hash-link" aria-label="Direct link to -customize-basic-app-settings-optional" title="Direct link to -customize-basic-app-settings-optional">​</a></h3>
+<p>Basic settings to customize when pushing an app include:</p>
+<ul>
+<li>
+<p><strong>Name:</strong> You can use any series of alphanumeric characters as the name of your app.</p>
+</li>
+<li>
+<p><strong>Instances:</strong> Generally speaking, the more app instances you run, the less downtime your app experiences. If your app is still in development, running a single instance can simplify troubleshooting. For any production app, <!-- -->Cloud Foundry<!-- --> recommends a minimum of two instances.</p>
+</li>
+<li>
+<p><strong>Memory limit:</strong> The maximum amount of memory that each instance of your app can consume. If an app instance exceeds this limit,
+<!-- -->CF<!-- --> restarts the instance. If an app instance exceeds its memory limit repeatedly in a short period of time,
+<!-- -->CF<!-- --> delays restarting the app instance.</p>
+</li>
+<li>
+<p><strong>Disk space limit:</strong> The maximum amount of disk space that each instance of your app can consume. If an app instance exceeds this limit,
+<!-- -->CF<!-- --> restarts the instance. If an app instance exceeds its disk space limit repeatedly in a short period of time,
+<!-- -->CF<!-- --> delays restarting the app instance.</p>
+</li>
+<li>
+<p><strong>Log rate limit:</strong> The maximum number of logs that each instance of your app can send to Loggregator. If an app instance exceeds this limit,
+<!-- -->CF<!-- --> drops the excess logs and reports doing so.</p>
+</li>
+<li>
+<p><strong>Start command:</strong> This is the command that <!-- -->CF<!-- --> uses to start each instance of your app. This start command differs by app framework.</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-limit-the-upload-files-optional"><a id="exclude"></a> Limit the upload files (optional)<a href="#-limit-the-upload-files-optional" class="hash-link" aria-label="Direct link to -limit-the-upload-files-optional" title="Direct link to -limit-the-upload-files-optional">​</a></h3>
+<p>By default, <!-- -->CF<!-- --> uploads all app files except version control files and directories with names such as <code>.svn</code>, <code>.git</code>, and <code>_darcs</code>.</p>
+<p>Cloud Foundry<!-- --> recommends that you explicitly exclude extraneous files residing within your app directory, particularly if your app is large. For example, if you build your app locally and push it as a binary, you can save resources by not uploading any of the app&#x27;s source code.</p>
+<p>To exclude files from upload:</p>
+<ol>
+<li>
+<p>Create a <code>.cfignore</code> file that lists the files to exclude.</p>
+</li>
+<li>
+<p>Save the <code>.cfignore</code> file to the directory where you run the <code>cf push</code> command.</p>
+</li>
+</ol>
+<p>For more information, see <a href="/cf-docs-new/docs-dev-guide/docs/deploy-apps/prepare-to-deploy.html#exclude">Ignore Unnecessary Files When Pushing</a> in <em>Considerations for Designing and Running an App in the
+Cloud</em>.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-configure-app-initialization-optional"><a id="profile"></a> Configure app initialization (optional)<a href="#-configure-app-initialization-optional" class="hash-link" aria-label="Direct link to -configure-app-initialization-optional" title="Direct link to -configure-app-initialization-optional">​</a></h3>
+<p>You can configure the  <code>cf push</code> command to run custom initialization tasks for an app.</p>
+<p>These tasks run after <!-- -->CF<!-- --> loads the app droplet but before it starts the app to allow the initialization script to access the app language runtime environment. For example, your script can map values from <code>$VCAP_SERVICES</code> into other environment variables or a config file that the app uses.</p>
+<div class="note important"><p>The following notes include important information about configuring app initialization when you use certain buildpacks:</p><ul><li><p><em>Java:</em> Initialization scripts for the Java buildpack require additional configuration.</p></li><li><p><em>PHP:</em> <!-- -->CF<!-- --> does not support initialization scripts for the PHP buildpack versions prior to v4.3.18. If you use
+one of these buildpack versions, your app hosts the <code>.profile</code> script&#x27;s contents. This means that any app staged using the affected buildpack
+versions can leak credentials placed in the <code>.profile</code> script.</p></li></ul></div>
+<p>To run initialization tasks:</p>
+<ol>
+<li>
+<p>Create a <code>.profile</code> script that contains the initialization tasks.</p>
+</li>
+<li>
+<p>Save the <code>.profile</code> script to the directory where you run the <code>cf push</code> command.</p>
+</li>
+</ol>
+<p>The following example <code>.profile</code> file uses <code>bash</code> to set a value for the environment variable <code>LANG</code>:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain"># Set the default LANG for your apps</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">export LANG=en_US.UTF-8</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>Setting this value at the operating system level allows the app to find out which language to use for error messages and instructions, collating sequences, and date formats.</p>
+<p>Your app root directory might also include a <code>.profile.d</code> directory that contains bash scripts that perform initialization tasks for the buildpack. Developers
+must not edit these scripts unless they are using a custom buildpack. For more information about custom buildpacks, see <a href="/cf-docs-new/docs-dev-guide/buildpacks/custom.html">Custom
+Buildpacks</a>.</p>
+<p>Initialization tasks as described here are also called <em>pre-runtime hooks</em> and <em><code>.profile</code> tasks</em>.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-custom-push-the-app"><a id="custom-cf-push"></a> Custom push the app<a href="#-custom-push-the-app" class="hash-link" aria-label="Direct link to -custom-push-the-app" title="Direct link to -custom-push-the-app">​</a></h3>
+<p>To specify custom options when pushing an app with <code>cf push</code>, you can include them in one or both of the following:</p>
+<ul>
+<li>
+<p>The <code>cf push</code> command itself.</p>
+</li>
+<li>
+<p>A manifest file.</p>
+<ul>
+<li>The manifest file must be named <code>manifest.yml</code> and reside in the directory where you run <code>cf push</code>.</li>
+<li>The manifest can include the app name, which lets you run <code>cf push</code> with no arguments.</li>
+<li>The manifest can also include a <code>services</code> block that lists service instances for the app to bind. For more information, see
+<a href="/cf-docs-new/docs-dev-guide/docs/deploy-apps/manifest-attributes.html#services-block">Services</a> in <em>App Manifest Attribute Reference</em>.</li>
+</ul>
+</li>
+</ul>
+<p>For information about how app settings change from push to push, including how command-line options, manifests, and commands like <code>cf scale</code> interact, see
+<a href="/cf-docs-new/docs-dev-guide/docs/deploy-apps/manifest.html">Deploying with App Manifests</a>.</p>
+<p>For a full list of <code>cf push</code> options, see the <a href="https://cli.cloudfoundry.org/en-US/cf/push.html" target="_blank" rel="noopener noreferrer">Cloud Foundry CLI reference guide</a>.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-configure-app-services-optional"><a id="services"></a> Configure app services (optional)<a href="#-configure-app-services-optional" class="hash-link" aria-label="Direct link to -configure-app-services-optional" title="Direct link to -configure-app-services-optional">​</a></h3>
+<p>If a newly-pushed app has the same name and route as an older app version, the new app retains the service bindings and service configuration of the
+previously-pushed version.</p>
+<p>For apps that are not already set up for the services that they use:</p>
+<ol>
+<li>
+<p>Bind the services to the app. For more information about services, see <a href="/cf-docs-new/docs-dev-guide/docs/services/index.html">Services overview</a>.</p>
+</li>
+<li>
+<p>(Optional) Configure the app with the service URL and credentials, if needed. For more information, see <a href="/cf-docs-new/docs-dev-guide/buildpacks/java/configuring-service-connections.html">Configuring Service
+Connections</a>.</p>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-build-custom-push-workflows-optional"><a id="sub-steps"></a> Build custom push workflows (optional)<a href="#-build-custom-push-workflows-optional" class="hash-link" aria-label="Direct link to -build-custom-push-workflows-optional" title="Direct link to -build-custom-push-workflows-optional">​</a></h3>
+<p>The CF CLI includes <a href="/cf-docs-new/docs-dev-guide/docs/push-sub-commands.html">composible push sub-step
+commands</a> that empower you to build your own push.
+These are useful if the default behavior of <code>cf push</code> does not match your
+needs, or if you want to implement more complicated app build, promotion, and
+run workflows.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-app-updates-and-downtime"><a id="updates"></a> App updates and downtime<a href="#-app-updates-and-downtime" class="hash-link" aria-label="Direct link to -app-updates-and-downtime" title="Direct link to -app-updates-and-downtime">​</a></h2>
+<p>By default, when you push an app that is already running, <!-- -->CF<!-- --> stops all existing instances of that app. Users who try to access the app see a <code>404 Not Found</code> message while <code>cf push</code> runs.</p>
+<p>When old and new versions of your app can run simultaneously, you can avoid app downtime by using <a href="/cf-docs-new/docs-dev-guide/docs/deploy-apps/rolling-deploy.html">Rolling deployments</a>. Alternatively, you can use the blue-green deployment method to swap routes between app versions running in parallel. For more information, see <a href="/cf-docs-new/docs-dev-guide/docs/deploy-apps/blue-green.html">Using blue-green deployment to reduce downtime and risk</a>.</p>
+<p>With some app updates, old and new versions of your code must never run at the same time. A worst-case example is if your app update migrates a database schema, causing old app instances to fail and lose user data. To prevent this, you must stop all running instances of your app before you push the new version.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-troubleshoot-app-push-problems"><a id="troubleshoot-push"></a> Troubleshoot app push problems<a href="#-troubleshoot-app-push-problems" class="hash-link" aria-label="Direct link to -troubleshoot-app-push-problems" title="Direct link to -troubleshoot-app-push-problems">​</a></h2>
+<p>If your app does not start on <!-- -->CF<!-- -->, first ensure that the app can run locally.</p>
+<p>To troubleshoot your app in the cloud using the cf CLI, see <a href="/cf-docs-new/docs-dev-guide/docs/deploy-apps/troubleshoot-app-health.html">Troubleshoot app deployment and health</a>.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/cloudfoundry/docs-cloudfoundry-concepts/tree/master/content_repos/docs-dev-guide/docs/deploy-apps/deploy-app.mdx" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"><span class="theme-last-updated">Last updated<!-- --> on <b><time datetime="2025-04-09T15:17:22.000Z" itemprop="dateModified">Apr 9, 2025</time></b></span></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/cf-docs-new/docs-dev-guide/docs/deploy-apps"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">How to push your app with Cloud Foundry CLI (cf push)</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/cf-docs-new/docs-buildpacks"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Cloud Foundry Buildpacks</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#-prerequisites" class="table-of-contents__link toc-highlight"><a></a> Prerequisites</a></li><li><a href="#-push-with-defaults" class="table-of-contents__link toc-highlight"><a></a> Push with defaults</a><ul><li><a href="#-default-route" class="table-of-contents__link toc-highlight"><a></a> Default route</a></li><li><a href="#-example-session" class="table-of-contents__link toc-highlight"><a></a> Example session</a></li></ul></li><li><a href="#-push-with-custom-settings" class="table-of-contents__link toc-highlight"><a></a> Push with custom settings</a><ul><li><a href="#-customize-basic-app-settings-optional" class="table-of-contents__link toc-highlight"><a></a> Customize basic app settings (optional)</a></li><li><a href="#-limit-the-upload-files-optional" class="table-of-contents__link toc-highlight"><a></a> Limit the upload files (optional)</a></li><li><a href="#-configure-app-initialization-optional" class="table-of-contents__link toc-highlight"><a></a> Configure app initialization (optional)</a></li><li><a href="#-custom-push-the-app" class="table-of-contents__link toc-highlight"><a></a> Custom push the app</a></li><li><a href="#-configure-app-services-optional" class="table-of-contents__link toc-highlight"><a></a> Configure app services (optional)</a></li><li><a href="#-build-custom-push-workflows-optional" class="table-of-contents__link toc-highlight"><a></a> Build custom push workflows (optional)</a></li></ul></li><li><a href="#-app-updates-and-downtime" class="table-of-contents__link toc-highlight"><a></a> App updates and downtime</a></li><li><a href="#-troubleshoot-app-push-problems" class="table-of-contents__link toc-highlight"><a></a> Troubleshoot app push problems</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://www.cloudfoundry.org/community/" target="_blank" rel="noopener noreferrer" class="footer__link-item">Community Website<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://slack.cloudfoundry.org/" target="_blank" rel="noopener noreferrer" class="footer__link-item">Slack<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://twitter.com/cloudfoundry/" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.youtube.com/channel/UC0ZYS0Y7b5oiVLvxGf4magw" target="_blank" rel="noopener noreferrer" class="footer__link-item">YouTube<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://stackoverflow.com/questions/tagged/cloud-foundry?tab=Newest" target="_blank" rel="noopener noreferrer" class="footer__link-item">Stack Overflow<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://lists.cloudfoundry.org/g/announce" target="_blank" rel="noopener noreferrer" class="footer__link-item">Mailing List<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/cf-docs-new/blog">Blog</a></li><li class="footer__item"><a href="https://github.com/cloudfoundry" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright"><a href="https://svkrieger.github.io/cf-docs-new/">Cloud Foundry Documentation<a> © 2025 <a href="https://cloudfoundry.org">Cloud Foundry Foundation<a>. All Rights Reserved.</a></a></div></div></div></footer></div>
+</body>
+</html>

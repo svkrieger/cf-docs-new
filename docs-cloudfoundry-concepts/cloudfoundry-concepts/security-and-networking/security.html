@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-docs-cloudfoundry-concepts/cloudfoundry-concepts/security-and-networking/security" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">Cloud Foundry security | Cloud Foundry Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://svkrieger.github.io/cf-docs-new/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://svkrieger.github.io/cf-docs-new/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://svkrieger.github.io/cf-docs-new/docs-cloudfoundry-concepts/cloudfoundry-concepts/security-and-networking/security"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Cloud Foundry security | Cloud Foundry Documentation"><meta data-rh="true" name="description" content="This topic provides you with an overview of  security."><meta data-rh="true" property="og:description" content="This topic provides you with an overview of  security."><link data-rh="true" rel="icon" href="/cf-docs-new/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://svkrieger.github.io/cf-docs-new/docs-cloudfoundry-concepts/cloudfoundry-concepts/security-and-networking/security"><link data-rh="true" rel="alternate" href="https://svkrieger.github.io/cf-docs-new/docs-cloudfoundry-concepts/cloudfoundry-concepts/security-and-networking/security" hreflang="en"><link data-rh="true" rel="alternate" href="https://svkrieger.github.io/cf-docs-new/docs-cloudfoundry-concepts/cloudfoundry-concepts/security-and-networking/security" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/cf-docs-new/blog/rss.xml" title="Cloud Foundry Documentation RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/cf-docs-new/blog/atom.xml" title="Cloud Foundry Documentation Atom Feed"><link rel="stylesheet" href="/cf-docs-new/assets/css/styles.b9e5c93a.css">
+<script src="/cf-docs-new/assets/js/runtime~main.784a0609.js" defer="defer"></script>
+<script src="/cf-docs-new/assets/js/main.6939736b.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/cf-docs-new/img/logo.png"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/cf-docs-new/"><div class="navbar__logo"><img src="/cf-docs-new/img/logo.png" alt="Cloud Foundry Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/cf-docs-new/img/logo.png" alt="Cloud Foundry Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Cloud Foundry Documentation</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/cf-docs-new/docs-cloudfoundry-concepts">General Information</a><a class="navbar__item navbar__link" href="/cf-docs-new/docs-dev-guide">App Developer Guide</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/cloudfoundry" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--active" href="/cf-docs-new/docs-cloudfoundry-concepts">Cloud Foundry concepts</a><button aria-label="Collapse sidebar category &#x27;Cloud Foundry concepts&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/cf-docs-new/docs-cloudfoundry-concepts/cloudfoundry-concepts/overview">Cloud Foundry overview</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--active" tabindex="0" href="/cf-docs-new/docs-cloudfoundry-concepts/cloudfoundry-concepts/security-and-networking">Security and networking</a><button aria-label="Collapse sidebar category &#x27;Security and networking&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/cf-docs-new/docs-cloudfoundry-concepts/cloudfoundry-concepts/security-and-networking/asg">App security groups in Cloud Foundry</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/cf-docs-new/docs-cloudfoundry-concepts/cloudfoundry-concepts/security-and-networking/container-security">Container security</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/cf-docs-new/docs-cloudfoundry-concepts/cloudfoundry-concepts/security-and-networking/roles">Orgs, spaces, roles, and permissions in Cloud Foundry</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/cf-docs-new/docs-cloudfoundry-concepts/cloudfoundry-concepts/security-and-networking/security">Cloud Foundry security</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/cf-docs-new/docs-cloudfoundry-concepts/cloudfoundry-concepts/security-and-networking/ssh-conceptual">Cloud Foundry app SSH components and processes</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/cf-docs-new/docs-cloudfoundry-concepts/cloudfoundry-concepts/security-and-networking/understand-cf-networking">Container-to-container networking</a></li></ul></li></ul></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/cf-docs-new/docs-cloudfoundry-concepts/contribute">Contribute to Cloud Foundry documentation</a></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/cf-docs-new/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item"><a class="breadcrumbs__link" itemprop="item" href="/cf-docs-new/docs-cloudfoundry-concepts"><span itemprop="name">Cloud Foundry concepts</span></a><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item"><a class="breadcrumbs__link" itemprop="item" href="/cf-docs-new/docs-cloudfoundry-concepts/cloudfoundry-concepts/security-and-networking"><span itemprop="name">Security and networking</span></a><meta itemprop="position" content="2"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">Cloud Foundry security</span><meta itemprop="position" content="3"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Cloud Foundry security</h1></header><p>&lt; Reset page title based on product title &gt;
+&lt; if vars.platform_code != &#x27;CF&#x27; &gt;</p>
+<p>&lt; set_title(vars.app_runtime_abbr, &quot;Security&quot;) &gt;</p>
+<p>&lt; end &gt;</p>
+<p>This topic provides you with an overview of <!-- -->Cloud Foundry<!-- --> security.
+For an overview of container security, see <a href="/cf-docs-new/docs-cloudfoundry-concepts/cloudfoundry-concepts/security-and-networking/container-security.html">Container Security</a>.</p>
+<p>CF<!-- --> implements the following measures to mitigate against security threats:</p>
+<ul>
+<li>Minimizes network surface area.</li>
+<li>Isolates customer apps and data in containers.</li>
+<li>Encrypts connections.</li>
+<li>Uses role-based access controls, applying and enforcing roles and permissions to ensure that users can only
+view and affect the spaces for which they have been granted access.</li>
+<li>Ensures security of app bits in a multi-tenant environment.</li>
+<li>Prevents possible denial of service attacks through resource starvation.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-system-boundaries-and-access"><a id="system-boundaries"></a> System boundaries and access<a href="#-system-boundaries-and-access" class="hash-link" aria-label="Direct link to -system-boundaries-and-access" title="Direct link to -system-boundaries-and-access">​</a></h2>
+<p>In a typical deployment of <!-- -->CF<!-- -->, the components run on virtual machines (VMs) that exist within a VLAN.</p>
+<p>In this configuration, the only access points visible on a public network are a load balancer that maps to one or more <!-- -->CF<!-- --> routers and, optionally, a NAT VM and a jumpbox. Because of the limited number of contact points with the public internet, the surface area for possible security vulnerabilities is minimized.</p>
+<p>As the following diagram shows the architecture of a typical deployment of <!-- -->CF<!-- -->:</p>
+<div class="theme-admonition theme-admonition-info admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>info</div><div class="admonitionContent_BuS1"><p>Cloud Foundry<!-- --> recommends that you also install a NAT VM for outbound requests and a
+jumpbox to access the BOSH Director, though these access points are optional depending on your network
+configuration.</p></div></div>
+<p><img decoding="async" loading="lazy" alt="Full description of this diagram is in the text." src="/cf-docs-new/assets/images/sysbound1-9c8026c8989014f39ee6f749001cbc43.png" width="984" height="850" class="img_ev3q"></p>
+<p>The diagram shows the following components:</p>
+<ul>
+<li>DMZ<!-- -->
+<ul>
+<li>Customer Load Balancers with SSL Termination</li>
+<li>Outbound NAT</li>
+<li>Jumpbox</li>
+</ul>
+</li>
+<li>Private vLANs<!-- -->
+<ul>
+<li>Cloud Foundry vLAN<!-- -->
+<ul>
+<li>Three Go Routers</li>
+<li>OAuth2 Server (UAA)</li>
+<li>Login Server</li>
+<li>Cloud Controller</li>
+<li>nsync</li>
+<li>Diego Brain</li>
+<li>Cell Reps</li>
+<li>Blob Store</li>
+<li>App Execution (Diego Cells) with Garden Containers</li>
+<li>Service Brokers</li>
+<li>BBS (HTTP/S)</li>
+<li>Consul</li>
+<li>NATS Message Bus</li>
+<li>Metrics Collector</li>
+<li>App Log Aggregator</li>
+</ul>
+</li>
+<li>BOSH vLAN<!-- -->
+<ul>
+<li>BOSH Director</li>
+<li>Resurrector</li>
+<li>Workers
+-Message Bus (NATS)</li>
+</ul>
+</li>
+<li>Services vLAN<!-- -->
+<ul>
+<li>Brokers</li>
+<li>Services Nodes</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>IaaS<!-- -->
+<ul>
+<li>Hypervisor</li>
+</ul>
+</li>
+</ul>
+<p>The preceding diagram shows the following communications:</p>
+<ul>
+<li>
+<p>Customer Load Balancers send communication to the three Go Routers.</p>
+</li>
+<li>
+<p>Outbound NAT communicates with Hypervisor.</p>
+</li>
+<li>
+<p>BOSH Director communicates with the App Execution (Diego Cells).</p>
+</li>
+<li>
+<p>Service Brokers in Cloud Foundry vLAN communicates with Brokers in Services vLAN.</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-protocols"><a id="protocols"></a> Protocols<a href="#-protocols" class="hash-link" aria-label="Direct link to -protocols" title="Direct link to -protocols">​</a></h3>
+<p>All traffic from the public internet to the Cloud Controller and UAA happens over HTTPS. Inside the boundary of the system, components communicate over a publish-subscribe (pub-sub) message bus NATS, HTTP, and SSL/TLS.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-bosh"><a id="bosh"></a> BOSH<a href="#-bosh" class="hash-link" aria-label="Direct link to -bosh" title="Direct link to -bosh">​</a></h3>
+<p>Operators deploy <!-- -->CF<!-- --> with BOSH. The BOSH Director is the core orchestrating component in BOSH: it controls VM creation and deployment, as well as other software and service lifecycle events. You use HTTPS to ensure secure communication to the BOSH Director.</p>
+<p>Cloud Foundry<!-- --> recommends that you deploy the BOSH Director on a subnet that is not
+publicly accessible, and access the BOSH Director from a jumpbox on the subnet or through VPN.</p>
+<p>BOSH includes the following capability for security:</p>
+<ul>
+<li>
+<p>Communicates with the VMs it runs through NATS. Because NATS cannot be accessed from outside <!-- -->CF<!-- -->, this ensures that published messages can only originate from a component within your deployment.</p>
+</li>
+<li>
+<p>Provides an audit trail through the <code>bosh tasks --all</code> and <code>bosh tasks --recent=VALUE</code> commands. <code>bosh tasks --all</code> returns a table that shows all BOSH actions taken by an operator or other running processes. <code>bosh tasks --recent=VALUE</code> returns a table of recent tasks, with <code>VALUE</code> being the number of recent tasks you want to view.</p>
+</li>
+<li>
+<p>Allows you to set up individual login accounts for each operator. BOSH operators have root access.</p>
+</li>
+</ul>
+<div class="theme-admonition theme-admonition-info admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>info</div><div class="admonitionContent_BuS1"><p>BOSH does not encrypt data stored on BOSH VMs. Your IaaS might encrypt this data.</p></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-isolation-segments"><a id="isolation-segments"></a> Isolation segments<a href="#-isolation-segments" class="hash-link" aria-label="Direct link to -isolation-segments" title="Direct link to -isolation-segments">​</a></h2>
+<p>Isolation segments provide dedicated pools of resources to which apps can be deployed to isolate workloads. Using isolation segments separates app resources as completely as if they were in different <!-- -->CF<!-- --> deployments but avoids redundant management components and unneeded network complexity.</p>
+<p>You can designate isolation segments for exclusive use by orgs and spaces within <!-- -->CF<!-- -->. This guarantees that apps within the org or space use resources that are not also used by other orgs or spaces. For more information, see <a href="/cf-docs-new/docs-cloudfoundry-concepts/cloudfoundry-concepts/security-and-networking/roles.html">Orgs, Spaces, Roles, and Permissions</a>.</p>
+<p>Customers can use isolation segments for different reasons, including:</p>
+<ul>
+<li>
+<p>To follow regulatory restrictions that require separation between different types of apps. For example, a health care company might not be able to host medical records and billing systems on the same machines.</p>
+</li>
+<li>
+<p>To dedicate specific hardware to different isolation segments. For example, to ensure that high-priority apps run on a cluster of high-performance hosts.</p>
+</li>
+<li>
+<p>To separate data on multiple clients, to strengthen a security story, or offer different hosting tiers.</p>
+</li>
+</ul>
+<p>In <!-- -->CF<!-- -->, the Cloud Controller database (CCDB) identifies isolation segments by name and GUID, for example <code>30dd879c-ee2f-11db-8314-0800200c9a66</code>. The isolation segment object has no internal structure beyond these two properties at the <!-- -->CF<!-- --> level, but BOSH associates the name of the isolation segment with Diego Cells, through their <code>placement_tag</code> property.</p>
+<p>This diagram shows how isolation segments keep apps running on different pools of Diego Cells, and how the Diego Cells communicate with each other and with the management components:
+<img decoding="async" loading="lazy" alt="Description is in the text." src="/cf-docs-new/assets/images/isolation-segments-8100a5532939f901ecabe271eecfbd6a.png" width="625" height="528" class="img_ev3q"></p>
+<!-- -->For information about how to create and manage isolation segments in a Cloud Foundry deployment, see [Managing Isolation Segments](../adminguide/isolation-segments.html).<!-- -->
+<p>For API commands related to isolation segments, see <a href="http://v3-apidocs.cloudfoundry.org/version/3.0.0/index.html#isolation-segments" target="_blank" rel="noopener noreferrer">Isolation Segments</a> in the Cloud Controller API (CAPI) Reference.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-authentication-and-authorization"><a id="auth"></a> Authentication and authorization<a href="#-authentication-and-authorization" class="hash-link" aria-label="Direct link to -authentication-and-authorization" title="Direct link to -authentication-and-authorization">​</a></h2>
+<p><a href="/cf-docs-new/docs-cloudfoundry-concepts/cloudfoundry-concepts/security-and-networking/architecture/uaa.html">User Account and Authentication</a> (UAA) is the central identity management service for <!-- -->CF<!-- --> and its various components.</p>
+<p>UAA acts as an <a href="https://oauth.net/2/" target="_blank" rel="noopener noreferrer">OAuth2</a> Authorization Server and issues access tokens for apps that request platform resources.
+The tokens are based on the <a href="http://jwt.io/" target="_blank" rel="noopener noreferrer">JSON Web Token</a> and are digitally signed by UAA.</p>
+<p>Operators can configure the identity store in UAA. If users register an account with the <!-- -->CF<!-- --> platform, UAA acts as the user store and stores user passwords in the UAA database using <a href="http://en.wikipedia.org/wiki/Bcrypt" target="_blank" rel="noopener noreferrer">bcrypt</a>. UAA also supports connecting to external user stores through LDAP and SAML. Once an operator has configured the external user store, such as a corporate Microsoft Active Directory, users can use their LDAP credentials to gain access to the <!-- -->CF<!-- --> platform instead of registering a separate account. Alternatively, operators can use SAML to connect to an external user store and enable single sign-on for users into the <!-- -->CF<!-- --> platform.</p>
+<p>Standard <!-- -->CF<!-- --> deployments based on <a href="https://github.com/cloudfoundry/cf-deployment" target="_blank" rel="noopener noreferrer">cf-deployment</a> provide a UAA client <code>cf</code> that can be used to create OAuth 2 tokens using the Password Grant Flow for <!-- -->CF<!-- --> users that are needed to access the CF API. This UAA client is also used by the CF CLI. The UAA client <code>cf</code> doesn&#x27;t require a <code>client_secret</code>.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-managing-user-access-with-role-based-access-control"><a id="rbac"></a> Managing user access with Role-Based Access Control<a href="#-managing-user-access-with-role-based-access-control" class="hash-link" aria-label="Direct link to -managing-user-access-with-role-based-access-control" title="Direct link to -managing-user-access-with-role-based-access-control">​</a></h3>
+<p>Apps that users deploy to <!-- -->CF<!-- --> exist within a space. Spaces exist within orgs. To view and access an org or a space, a user must be a member of it. <!-- -->CF<!-- --> uses role-based access control (RBAC), with each role granted permissions to either an org or a specified space. For more information about roles and permissions, see <a href="/cf-docs-new/docs-cloudfoundry-concepts/cloudfoundry-concepts/security-and-networking/roles.html">Orgs, Spaces, Roles, and Permissions</a>.</p>
+<!-- -->
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-security-for-service-broker-integration"><a id="service-broker"></a> Security for service broker integration<a href="#-security-for-service-broker-integration" class="hash-link" aria-label="Direct link to -security-for-service-broker-integration" title="Direct link to -security-for-service-broker-integration">​</a></h2>
+<p>The Cloud Controller authenticates every request with the Service Broker API using HTTP or HTTPS, depending on which protocol that you specify during broker registration. The Cloud Controller rejects any broker registration that does not contain a username and password.</p>
+<p>Service instances bound to an app contain credential data. Users specify the binding credentials for user-provided service instances, while third-party brokers specify the binding credentials for managed service instances. The VCAP_SERVICES environment variable contains credential information for any service bound to an app. <!-- -->CF<!-- --> constructs this value from encrypted data that it stores in the CCDB. For more information about user-provided service instances, see <a href="/cf-docs-new/docs-cloudfoundry-concepts/cloudfoundry-concepts/devguide/services/user-provided.html">User-Provided Service Instances</a>.</p>
+<p>The selected third-party broker controls how securely to communicate managed service credentials.</p>
+<p>A third-party broker might offer a dashboard client in its catalog. Dashboard clients require a text string defined as a <code>client_secret</code>. <!-- -->CF<!-- --> does not store this secret in the CCDB. Instead, <!-- -->CF<!-- --> passes the secret to the UAA component for verification using HTTP or HTTPS.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-managing-software-vulnerabilities"><a id="vuln-manage"></a> Managing software vulnerabilities<a href="#-managing-software-vulnerabilities" class="hash-link" aria-label="Direct link to -managing-software-vulnerabilities" title="Direct link to -managing-software-vulnerabilities">​</a></h2>
+<p>CF<!-- --> manages software vulnerability using releases and BOSH stemcells. New <!-- -->CF<!-- --> releases are created with updates to address code issues, while new stemcells are created with patches for the latest security fixes to address any underlying operating system issues.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-ensuring-security-for-app-artifacts"><a id="app-artifacts"></a> Ensuring security for app artifacts<a href="#-ensuring-security-for-app-artifacts" class="hash-link" aria-label="Direct link to -ensuring-security-for-app-artifacts" title="Direct link to -ensuring-security-for-app-artifacts">​</a></h2>
+<p>CF<!-- --> secures both the code and the configuration of an app using the following functions:</p>
+<ul>
+<li>
+<p>App developers push their code using the <!-- -->CF<!-- --> API. <!-- -->CF<!-- --> secures each call to the <!-- -->CF<!-- --> API using the <a href="#auth">UAA</a> and SSL.</p>
+</li>
+<li>
+<p>The Cloud Controller uses <a href="#rbac">RBAC</a> to ensure that only authorized users can access a particular app.</p>
+</li>
+<li>
+<p>The Cloud Controller stores the configuration for an app in an encrypted database table. This configuration data includes user-specified environment variables and service credentials for any services bound to the app.</p>
+</li>
+<li>
+<p>CF<!-- --> runs the app inside a secure container. For more information, see <a href="/cf-docs-new/docs-cloudfoundry-concepts/cloudfoundry-concepts/security-and-networking/container-security.html">Container Security</a>.</p>
+</li>
+<li>
+<p>CF<!-- --> operators can configure network traffic rules to control inbound communication to and outbound communication from an app. For more information, see the <a href="/cf-docs-new/docs-cloudfoundry-concepts/cloudfoundry-concepts/security-and-networking/container-security.html#config-traffic">Network Traffic Rules</a> section of the <em>Container Security</em> topic.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-security-event-logging-and-auditing"><a id="logging"></a> Security event logging and auditing<a href="#-security-event-logging-and-auditing" class="hash-link" aria-label="Direct link to -security-event-logging-and-auditing" title="Direct link to -security-event-logging-and-auditing">​</a></h2>
+<p>For operators, <!-- -->CF<!-- --> provides an audit trail through the <code>bosh tasks</code> command. This command shows all actions that an operator has taken with the platform. Additionally, operators can redirect <!-- -->CF<!-- --> component logs to a standard syslog server using the <code>syslog_daemon_config</code> <a href="http://docs.cloudfoundry.org/running/managing-cf/logging.html" target="_blank" rel="noopener noreferrer">property</a> in the <code>metron_agent</code> job of <code>cf-release</code>.</p>
+<p>For users, <!-- -->CF<!-- --> records an audit trail of all relevant API invocations of an app. The Cloud Foundry Command Line Interface (cf CLI) command <code>cf events</code> returns this information.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-recommendations-for-running-a-secure-deployment"><a id="recommendations"></a> Recommendations for running a secure deployment<a href="#-recommendations-for-running-a-secure-deployment" class="hash-link" aria-label="Direct link to -recommendations-for-running-a-secure-deployment" title="Direct link to -recommendations-for-running-a-secure-deployment">​</a></h2>
+<p>To help run a secure deployment, <!-- -->Cloud Foundry<!-- --> recommends:</p>
+<ul>
+<li>
+<p>Configure UAA clients and users using a BOSH manifest. Limit and manage these clients and users as you would any other kind of privileged account.</p>
+</li>
+<li>
+<p>Deploy within a VLAN that limits network traffic to individual VMs. This reduces the possibility of unauthorized access to the VMs within your BOSH-managed cloud.</p>
+</li>
+<li>
+<p>Enable HTTPS for apps and SSL database connections to protect sensitive data transmitted to and from apps.</p>
+</li>
+<li>
+<p>Ensure that the jumpbox is secure, along with the load balancer and NAT VM.</p>
+</li>
+<li>
+<p>Encrypt stored files and data within databases to meet your data security requirements. Deploy using industry standard encryption and the best practices for your language or framework.</p>
+</li>
+<li>
+<p>Prohibit promiscuous network interfaces on the trusted network.</p>
+</li>
+<li>
+<p>Review and monitor data sharing and security practices with third party services that you use to provide additional function to your app.</p>
+</li>
+<li>
+<p>Store SSH keys securely to prevent disclosure, and promptly replace lost or compromised keys.</p>
+</li>
+<li>
+<p>Use <!-- -->CF<!-- -->&#x27;s RBAC model to restrict your users&#x27; access to only what is necessary to complete their tasks.</p>
+</li>
+<li>
+<p>Use a strong passphrase for both your <!-- -->CF<!-- --> user account and SSH keys.</p>
+</li>
+</ul>
+<!-- -->
+<!-- -->
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-security-for-apps-and-services"><a id="apps-services"></a> Security for apps and services<a href="#-security-for-apps-and-services" class="hash-link" aria-label="Direct link to -security-for-apps-and-services" title="Direct link to -security-for-apps-and-services">​</a></h2>
+<p>This section links to topics that describe how <!-- -->CF<!-- --> and <!-- -->CF<!-- --> users manage security for apps and service instances.</p>
+<ul>
+<li><a href="/cf-docs-new/docs-cloudfoundry-concepts/cloudfoundry-concepts/concepts/asg.html">App Security Groups</a>: Describes how App Security Groups (ASGs) work and how to manage them in <!-- -->CF<!-- -->.</li>
+</ul>
+<!-- -->
+<ul>
+<li>
+<p><a href="/cf-docs-new/docs-cloudfoundry-concepts/cloudfoundry-concepts/devguide/deploy-apps/trusted-system-certificates.html">Trusted System Certificates</a>: Explains where apps can find trusted system certificates.</p>
+</li>
+<li>
+<p><a href="/cf-docs-new/docs-cloudfoundry-concepts/cloudfoundry-concepts/services/access-control.html">Managing Access to Service Plans</a>: Describes how to activate or deactivate access to service plans for a subset of users.</p>
+</li>
+<li>
+<p><a href="/cf-docs-new/docs-cloudfoundry-concepts/cloudfoundry-concepts/devguide/services/application-binding.html">Delivering Service Credentials to an App</a>: Describes how to bind apps to service instances, which generate the credentials that enable the apps to use the service.</p>
+</li>
+<li>
+<p><a href="/cf-docs-new/docs-cloudfoundry-concepts/cloudfoundry-concepts/devguide/services/service-keys.html">Managing Service Keys</a>: Explains how to create and manage service keys that allow apps to use service instances.</p>
+</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/cloudfoundry/docs-cloudfoundry-concepts/tree/master/content_repos/docs-cloudfoundry-concepts/cloudfoundry-concepts/security-and-networking/security.mdx" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"><span class="theme-last-updated">Last updated<!-- --> on <b><time datetime="2025-04-09T15:13:24.000Z" itemprop="dateModified">Apr 9, 2025</time></b></span></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/cf-docs-new/docs-cloudfoundry-concepts/cloudfoundry-concepts/security-and-networking/roles"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Orgs, spaces, roles, and permissions in Cloud Foundry</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/cf-docs-new/docs-cloudfoundry-concepts/cloudfoundry-concepts/security-and-networking/ssh-conceptual"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Cloud Foundry app SSH components and processes</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#-system-boundaries-and-access" class="table-of-contents__link toc-highlight"><a></a> System boundaries and access</a><ul><li><a href="#-protocols" class="table-of-contents__link toc-highlight"><a></a> Protocols</a></li><li><a href="#-bosh" class="table-of-contents__link toc-highlight"><a></a> BOSH</a></li></ul></li><li><a href="#-isolation-segments" class="table-of-contents__link toc-highlight"><a></a> Isolation segments</a></li><li><a href="#-authentication-and-authorization" class="table-of-contents__link toc-highlight"><a></a> Authentication and authorization</a><ul><li><a href="#-managing-user-access-with-role-based-access-control" class="table-of-contents__link toc-highlight"><a></a> Managing user access with Role-Based Access Control</a></li></ul></li><li><a href="#-security-for-service-broker-integration" class="table-of-contents__link toc-highlight"><a></a> Security for service broker integration</a></li><li><a href="#-managing-software-vulnerabilities" class="table-of-contents__link toc-highlight"><a></a> Managing software vulnerabilities</a></li><li><a href="#-ensuring-security-for-app-artifacts" class="table-of-contents__link toc-highlight"><a></a> Ensuring security for app artifacts</a></li><li><a href="#-security-event-logging-and-auditing" class="table-of-contents__link toc-highlight"><a></a> Security event logging and auditing</a></li><li><a href="#-recommendations-for-running-a-secure-deployment" class="table-of-contents__link toc-highlight"><a></a> Recommendations for running a secure deployment</a></li><li><a href="#-security-for-apps-and-services" class="table-of-contents__link toc-highlight"><a></a> Security for apps and services</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://www.cloudfoundry.org/community/" target="_blank" rel="noopener noreferrer" class="footer__link-item">Community Website<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://slack.cloudfoundry.org/" target="_blank" rel="noopener noreferrer" class="footer__link-item">Slack<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://twitter.com/cloudfoundry/" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.youtube.com/channel/UC0ZYS0Y7b5oiVLvxGf4magw" target="_blank" rel="noopener noreferrer" class="footer__link-item">YouTube<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://stackoverflow.com/questions/tagged/cloud-foundry?tab=Newest" target="_blank" rel="noopener noreferrer" class="footer__link-item">Stack Overflow<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://lists.cloudfoundry.org/g/announce" target="_blank" rel="noopener noreferrer" class="footer__link-item">Mailing List<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/cf-docs-new/blog">Blog</a></li><li class="footer__item"><a href="https://github.com/cloudfoundry" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright"><a href="https://svkrieger.github.io/cf-docs-new/">Cloud Foundry Documentation<a> © 2025 <a href="https://cloudfoundry.org">Cloud Foundry Foundation<a>. All Rights Reserved.</a></a></div></div></div></footer></div>
+</body>
+</html>

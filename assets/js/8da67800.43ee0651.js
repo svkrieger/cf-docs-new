@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcf_docs_new=self.webpackChunkcf_docs_new||[]).push([[271],{4144:e=>{e.exports=JSON.parse('{"metadata":{"permalink":"/cf-docs-new/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":4,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);
