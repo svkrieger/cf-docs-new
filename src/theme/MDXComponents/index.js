@@ -1,5 +1,5 @@
 import MDXComponents from '@theme-original/MDXComponents'
-import {CFDevLink, AppDomain, SSL, APIEndpoint, RecommendedBy, GlobalAuditorRole, CFNetworking, AppSvcLinks, ComplianceLinks, IpsecNote, ConsoleLinks, ManageIsoSegLink, AdminRole, AdminReadOnlyRole, BillingManagerRoleNote, BillingManagerRole, OrAppsMan, PlatformName, AppSecGroupsDefault, ContainerNetworkLink, AppRuntimeAbbr, AppRuntimeFirst, ConceptsSfVsFullHeader, SmallFootprintComparison, ConceptsProductModelHeader, ConceptsProductModelImage, OpsManager, CompanyName, AsgNote, AppSecGroupsLink} from '@site/src/components/Constants'
+import {BuildpacksLink, TiledevLink, CFDevLink, AppDomain, SSL, APIEndpoint, RecommendedBy, GlobalAuditorRole, CFNetworking, AppSvcLinks, ComplianceLinks, IpsecNote, ConsoleLinks, ManageIsoSegLink, AdminRole, AdminReadOnlyRole, BillingManagerRoleNote, BillingManagerRole, OrAppsMan, PlatformName, AppSecGroupsDefault, ContainerNetworkLink, AppRuntimeAbbr, AppRuntimeFirst, ConceptsSfVsFullHeader, SmallFootprintComparison, ConceptsProductModelHeader, ConceptsProductModelImage, OpsManager, CompanyName, AsgNote, AppSecGroupsLink} from '@site/src/components/Constants'
 import ConditionalContent from '@site/src/components/ConditionalContent'
 import CustomComponents from '@site/src/components/ComponentProvider'
 
@@ -36,5 +36,7 @@ export default {
   SSL,
   AppDomain,
   CFDevLink,
+  TiledevLink,
+  BuildpacksLink,
   ...CustomComponents,
 };

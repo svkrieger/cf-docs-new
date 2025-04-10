@@ -13,3 +13,6 @@
 [submodule "content_repos/docs-deploying-cf"]
 	path = content_repos/docs-deploying-cf
 	url = https://github.com/sap-contributions/docs-deploying-cf
+[submodule "content_repos/docs-services"]
+	path = content_repos/docs-services
+	url = https://github.com/cloudfoundry/docs-services

@@ -264,8 +264,8 @@ export function blobstore_kb() {
   return <></>;
 }
 
-export function buildpacks_link() {
-  return '<a href="https://docs.cloudfoundry.org/buildpacks/index.html">Buildpacks</a>';
+export function BuildpacksLink() {
+  return <a href="https://docs.cloudfoundry.org/buildpacks/index.html">Buildpacks</a>;
 }
 
 export function cc_logging_default() {
@@ -1178,6 +1178,10 @@ export function using_docker_link() {
 
 export function CFDevLink() {
   return <>To deploy a local Cloud Foundry environment for experimentation or debugging purposes, you can use CF Dev. For more information, see <a href="https://github.com/cloudfoundry-incubator/cfdev">CF Dev</a>.</>;
+}
+
+export function TiledevLink() {
+  <></>;
 }
 
 export function zipkin_tracing_link() {

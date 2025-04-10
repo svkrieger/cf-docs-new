@@ -138,6 +138,12 @@ const config = {
             label: 'Operator Guide',
           },
           {
+            type: 'docSidebar',
+            position: 'left',
+            sidebarId: 'servicesGuideSidebar',
+            label: 'Service Author Guide',
+          },
+          {
             href: 'https://github.com/cloudfoundry',
             label: 'GitHub',
             position: 'right',
