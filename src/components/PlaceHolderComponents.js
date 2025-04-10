@@ -19,3 +19,15 @@ export function OverviewModel() {
 export function DefaultAsg() {
     return <></>;
 }
+
+export function CFCliInstaller() {
+    return <></>;
+}
+
+export function PCFRolesTable() {
+    return <></>;
+}
+
+export function PCFSuspendedRolesTable() {
+    return <></>;
+}

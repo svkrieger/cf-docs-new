@@ -1,4 +1,5 @@
 import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
 import React from 'react';
 
 export function AppDomain() {
@@ -152,11 +153,11 @@ export function add_volumes_link() {
 }
 
 export function AdminReadOnlyRole() {
-  return <><ul><li>**Admin Read-Only**: Read-only access to all Cloud Controller API resources. Assigned the `cloud_controller.admin_read_only` scope in UAA.</li></ul></>;
+  return <><ul><li><b>Admin Read-Only</b>: Read-only access to all Cloud Controller API resources. Assigned the <code>cloud_controller.admin_read_only</code> scope in UAA.</li></ul></>;
 }
 
 export function AdminRole() {
-  return <><ul><li>**Admin**: Perform operational actions on all orgs and spaces using the Cloud Controller API. Assigned the `cloud_controller.admin` scope in UAA.</li></ul></>;
+  return <><ul><li><b>Admin</b>: Perform operational actions on all orgs and spaces using the Cloud Controller API. Assigned the <code>cloud_controller.admin</code> scope in UAA.</li></ul></>;
 }
 
 export function admin() {
@@ -252,11 +253,11 @@ export function bbr_rn_compatibility() {
 }
 
 export function BillingManagerRoleNote() {
-  return <>::: info The Billing Manager role is only relevant for Cloud Foundry environments deployed with a billing engine.:::</>;
+  return <><Admonition type="info">The Billing Manager role is only relevant for Cloud Foundry environments deployed with a billing engine.</Admonition></>;
 }
 
 export function BillingManagerRole() {
-  return <><ul><li>**Org Billing Managers**: Create and manage billing account and payment information.</li></ul></>;
+  return <><ul><li><b>Org Billing Managers</b>: Create and manage billing account and payment information.</li></ul></>;
 }
 
 export function blobstore_kb() {
@@ -566,7 +567,7 @@ export function gen_GSG() {
 }
 
 export function GlobalAuditorRole() {
-  return <><ul><li>**Global Auditor**: Read-only access to all Cloud Controller API resources except for secrets, such as environment variables. The Global Auditor role cannot access those values. Assigned the `cloud_controller.global_auditor` scope in UAA.</li></ul></>;
+  return <><ul><li><b>Global Auditor</b>: Read-only access to all Cloud Controller API resources except for secrets, such as environment variables. The Global Auditor role cannot access those values. Assigned the <code>cloud_controller.global_auditor</code> scope in UAA.</li></ul></>;
 }
 
 export function grant_devs_c2c() {

@@ -28,3 +28,15 @@
   --ifm-color-primary-lightest: #e4edf2;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+.commands-table th {
+  text-align: left;
+}
+
+.commands-table td {
+  vertical-align: top;
+}
+
+.nowrap {
+  white-space: nowrap;
+}

@@ -7,3 +7,6 @@
 [submodule "content_repos/docs-buildpacks"]
 	path = content_repos/docs-buildpacks
 	url = https://github.com/cloudfoundry/docs-buildpacks.git
+[submodule "content_repos/docs-cf-cli"]
+	path = content_repos/docs-cf-cli
+	url = https://github.com/cloudfoundry/docs-cf-cli.git

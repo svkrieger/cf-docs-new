@@ -1,7 +1,1 @@
-import React from 'react';
-import PCFOverviewModelPartial from '@site/static/partials/test.mdx';
-
-export function PCFOverviewModel() {
-  return <PCFOverviewModelPartial />;
-}
-
+// Contents of this file will be generated with `npm run generate-overrides`. The components in this file will override the components defined in PlaceHolderComponents.js.
