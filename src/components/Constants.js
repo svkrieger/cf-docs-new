@@ -1176,8 +1176,8 @@ export function using_docker_link() {
   return "For an explanation of how Docker works in Cloud Foundry, see [Using Docker in Cloud Foundry](../../adminguide/docker.html).";
 }
 
-export function cfdev_link() {
-  return 'To deploy a local Cloud Foundry environment for experimentation or debugging purposes, you can use CF Dev. For more information, see <a href="https://github.com/cloudfoundry-incubator/cfdev">CF Dev</a>.';
+export function CFDevLink() {
+  return <>To deploy a local Cloud Foundry environment for experimentation or debugging purposes, you can use CF Dev. For more information, see <a href="https://github.com/cloudfoundry-incubator/cfdev">CF Dev</a>.</>;
 }
 
 export function zipkin_tracing_link() {
